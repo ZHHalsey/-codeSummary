@@ -19,6 +19,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     // 加注释了
     // 添加第二行注释
+    // 用xcode提交的
 }
 
 
