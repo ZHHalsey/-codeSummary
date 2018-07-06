@@ -604,7 +604,7 @@
          
          // 这里说下 >>> 执行顺序 viewDidLoad在viewWillAppear之前执行
          一般来说遵循下面这个规律
-         // 设置某物的时候, 类似init, loadView, viewDidLoad, viewWillAppear等需要先设置的, 要先调用super的
+         // 设置某物的时候, 类似init, viewDidLoad, viewWillAppear等需要先设置的, 要先调用super的
          - (void)setupSomething{
               [super setupSomething];
          
