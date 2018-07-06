@@ -50,10 +50,8 @@
  35 > 取视图的子视图比如label等, 然后可以给子视图赋值
  36 > MAC电脑远程桌面Windows电脑步骤(包括详细配置,文件传输)
  37 > 宏定义实现接口拼接, 方便修改主机地址
- 
  38 > Coding和码云创建仓库提交代码步骤
- 
- 39 > 
+ 39 > 关于viewWillAppear和viewDidAppear调用super方法的时候写法
  
  40 > 
  
@@ -591,7 +589,24 @@
          // 在码云上先创建私有组织项目, 可以邀请开发人员, 只有被邀请的才能查看代码, 这个到时候就点击看就行了
          // Coding先创建项目, 然后再加入成员, 点击创建的项目, 然后选择'设置', 然后选择'成员管理', 然后添加成员就可以了, 在'设置'->'仓库设置'里面可以设置这个项目是公开的还是私有的
          */
-// 39
+// 39 > 关于viewWillAppear和viewDidAppear调用super方法的时候写法
+        /*
+         
+         
+          - (void)viewWillAppear:(BOOL)animated{
+              [super viewWillAppear:animated];
+              //在这里调用要执行的代码
+         
+         
+          }
+         
+          - (void)viewDidAppear:(BOOL)animated{
+              //在这里调用要执行的代码
+              [super viewDidAppear:animated];
+          }
+         
+
+         */
 // 40
 // 41
 // 42
