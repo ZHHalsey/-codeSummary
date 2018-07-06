@@ -591,26 +591,28 @@
          */
 // 39 > 关于viewWillAppear和viewDidAppear调用super方法的时候写法
         /*
-          - (void)viewWillAppear:(BOOL)animated{
+          - (void)viewWillAppear:(BOOL)animated{ // 视图将要出现
               [super viewWillAppear:animated];
          
-              //在这里调用要执行的代码
+              // 在super后面调用要执行的代码
           }
-          - (void)viewDidAppear:(BOOL)animated{
-              //在这里调用要执行的代码
+          - (void)viewWillDisappear:(BOOL)animated{ // 视图将要消失
+              // 在super前面调用要执行的代码
          
               [super viewDidAppear:animated];
           }
          
-         
+         // 这里说下 >>> 执行顺序 viewDidLoad在viewWillAppear之前执行
          一般来说遵循下面这个规律
-         
-         - (void)setupSomething{        // 设置某物的时候, 类似viewWillAppear方法
+         // 设置某物的时候, 类似init, loadView, viewDidLoad, viewWillAppear等需要先设置的, 要先调用super的
+         - (void)setupSomething{
               [super setupSomething];
          
               // 在这里调用要执行的代码
          }
-         - (void)rearDownSomething{     // 拆毁某物的时候, 类似viewDidAppear
+         
+         // 拆毁某物的时候, 类似delloc, viewDidUnload, viewWillDisappear等后设置的, 就后调用super的
+         - (void)rearDownSomething{
               // 在这里调用要执行的代码
          
               [super rearDownSomething];
