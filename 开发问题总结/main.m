@@ -591,20 +591,31 @@
          */
 // 39 > 关于viewWillAppear和viewDidAppear调用super方法的时候写法
         /*
-         
-         
           - (void)viewWillAppear:(BOOL)animated{
               [super viewWillAppear:animated];
+         
               //在这里调用要执行的代码
-         
-         
           }
-         
           - (void)viewDidAppear:(BOOL)animated{
               //在这里调用要执行的代码
+         
               [super viewDidAppear:animated];
           }
          
+         
+         一般来说遵循下面这个规律
+         
+         - (void)setupSomething{        // 设置某物的时候, 类似viewWillAppear方法
+              [super setupSomething];
+         
+              // 在这里调用要执行的代码
+         }
+         - (void)rearDownSomething{     // 拆毁某物的时候, 类似viewDidAppear
+              // 在这里调用要执行的代码
+         
+              [super rearDownSomething];
+         }
+
 
          */
 // 40 > 在github上上传多个文件夹, 每个文件夹里面有一个项目步骤
