@@ -54,6 +54,7 @@
  39 > 关于viewWillAppear和viewDidAppear调用super方法的时候写法
  40 > 在github上上传多个文件夹, 每个文件夹里面有一个项目
  41 > @class的用法详解
+ 42 > 给一个view特定的角设置圆角
  
  
  
@@ -642,7 +643,25 @@
          入的类不能调用alloc init等方法, 一般用@class就是用来进行一个属性的声明, 别的啥用处也没有
          
          */
-// 42
+// 42 > 给一个view特定的角设置圆角
+        // 下面这个是给创建的self.imageCodeView的上面的两个角设置圆角, 核心代码就是中间的那几行
+        /*
+         self.imageCodeView = [[RHImageCodeView alloc]initWithFrame:CGRectMake(20, 230, SCREEN_WIDTH - 40, 150)];
+         self.imageCodeView.backgroundColor = [UIColor orangeColor];
+         
+         // 上面的两个角设置圆角****
+         UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.imageCodeView.bounds      byRoundingCorners:UIRectCornerTopRight | UIRectCornerTopLeft    cornerRadii:CGSizeMake(20, 20)];
+         CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+         maskLayer.frame = self.imageCodeView.bounds;
+         maskLayer.path = maskPath.CGPath;
+         self.imageCodeView.layer.mask = maskLayer;
+         // 上面的两个角设置圆角****
+         
+         self.nextSubmitBtn.userInteractionEnabled = NO;
+         [self.view addSubview:self.imageCodeView];
+
+         
+         */
 
 /******************************************开发问题解决方法***********************************************/
 
