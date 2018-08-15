@@ -55,6 +55,7 @@
  40 > 在github上上传多个文件夹, 每个文件夹里面有一个项目
  41 > @class的用法详解
  42 > 给一个view特定的角设置圆角
+ 43 > 获取一个类的所有的成员名字和属性名称, 然后通过kvo修改
  
  
  
@@ -661,6 +662,25 @@
          [self.view addSubview:self.imageCodeView];
 
          
+         */
+// 43 > 获取一个类的所有的成员名字和属性名称, 然后通过kvo修改
+        /*
+         1 > 导入头文件 #import <objc/runtime.h>
+         2 > 在需要获取某个类属性名称的地方调用下面这个方法, 这里是获取的UITableViewCell的所有变量
+         - (void)getAllIvar{
+                 // 这里是获取的UITableViewCell所有的成员变量, 获取后可以查看所有的变量, 然后通过kvo的 setValue: forKey: 来动态获取
+                 unsigned int count = 0;
+                 Ivar *ivars = class_copyIvarList([UITableViewCell class], &count);
+                 for (int i = 0; i < count; i++) {
+                     Ivar ivar = *(ivars + i);
+                     NSLog(@"成员变量名字有--%s", ivar_getName(ivar)); // 打印成员变量名字
+                     //        NSLog(@"成员变量数据类型有--%s", ivar_getTypeEncoding(ivar)); // 打印成员变量数据类型
+                }
+                free(ivars);
+         }
+             比如cell有个imageView属性, 但是cell.imageView = xxx;这样是修改不了的, 因为imageView是readOnly的
+             我们就可以通过kvo的 [setValue: forKey:];修改, 想修改cell的imageView属性的话用下面这行代码就能修改
+             [cell setValue:imageView forKey:@"_imageView"];
          */
 
 /******************************************开发问题解决方法***********************************************/
