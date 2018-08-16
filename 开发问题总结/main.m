@@ -56,6 +56,7 @@
  41 > @class的用法详解
  42 > 给一个view特定的角设置圆角
  43 > 获取一个类的所有的成员名字和属性名称, 然后通过kvo修改
+ 44 > 添加启动页静态图
  
  
  
@@ -681,6 +682,14 @@
              比如cell有个imageView属性, 但是cell.imageView = xxx;这样是修改不了的, 因为imageView是readOnly的
              我们就可以通过kvo的 [setValue: forKey:];修改, 想修改cell的imageView属性的话用下面这行代码就能修改
              [cell setValue:imageView forKey:@"_imageView"];
+         */
+// 44 > 添加启动页静态图
+        /*
+         1 > 点击Assets.xcassets -> 左下角+号 -> App icons & launch Images -> New iOS Launch Image
+         2 > 然后在上面出现的框框内仅在iPhone里面放入对应尺寸的照片就行, iPad的不需要放
+         3 > 点击target -> General -> App Icons and Launch Images -> 点击第二个 Launch Images Sourc -> 弹窗选择Assets -> Migrate -> 把第三个的Launch Screen File里面内容删除保存 ->选择项目中的LaunchScreen.storyboard -> 选中出现的ViewController -> 右侧面板选择左侧第一个 -> 找到"Use as Launch Screen" -> 把前面的对勾去掉
+         4 > 这个时候运行项目, 看看静态启动图设置了没, 如果没有的话, 把app删除, 重新安装再试试
+         
          */
 
 /******************************************开发问题解决方法***********************************************/
