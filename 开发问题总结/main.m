@@ -456,27 +456,26 @@
          
          //  > 在.pch中加入自定义的NSLog宏
                 1 > 下面这个是有其他的打印信息的 (打印出来方法名字, 还有第多少行)
-                    #ifdef DEBUG
-                    # define ZHLog(fmt, ...) NSLog((@"[函数名:%s]\n" "[行号:%d] \n" fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
-                    #else
-                    # define ZHLog(...);
-                    #endif
+                     #ifdef DEBUG
+                     # define ZHLog(fmt, ...) NSLog((@"[函数名:%s]\n" "[行号:%d] \n" fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
+                     #else
+                     # define ZHLog(...);
+                     #endif
+         
+                2 > 以后用下面这个, 打印信息里面只打印一个行号, 这样能快速的定位
+                     #ifdef DEBUG
+                     # define ZHLog(fmt, ...) NSLog((@"[第%d行] " fmt),  __LINE__, ##__VA_ARGS__);
+                     #else
+                     #define ZHLog(fmt, ...)
+                     #endif
+         
+                3 > 有时候后台返回的Json数据太多了, 用NSLog打印会显示不全, 但是用printf就可以, 可以用下面的宏
+                     #ifdef DEBUG
+                     # define ZHLog(FORMAT, ...) printf("[%s-%s][第%d行]%s\n", __DATE__, __TIME__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+                     #else
+                     #define ZHLog(fmt, ...)
+                     #endif
 
-         
-                2 > 单纯的自定义NSLog, 跟NSLog打印结果一样,没有其余的打印信息
-                    #ifdef DEBUG
-                    #define ZHLog(fmt, ...) NSLog(fmt, ## __VA_ARGS__)
-                    #else
-                    #define ZHLog(fmt, ...)
-                    #endif
-         
-         
-                3 > 以后用下面这个, 打印信息里面只打印一个行号, 这样能快速的定位
-                    #ifdef DEBUG
-                    # define ZHLog(fmt, ...) NSLog((@"[第%d行] " fmt),  __LINE__, ##__VA_ARGS__);
-                    #else
-                    #define ZHLog(fmt, ...)
-                    #endif
 
          */
 // 30 > 判断程序是不是第一次打开 (问题遇到次数 : 2)
@@ -575,8 +574,12 @@
         /*
             1 > 在全局头文件Header.h文件中这样写 >
                     #define API_BASE_URL @"http://192.168.0.196:8445"
-            2 > 在单个Crotroller的头部的宏这样写 >
-                    #define sendCodeURL [NSString stringWithFormat:@"%@/v1/account/sendverifictioncode", API_BASE_URL]
+                    #define sendCodeURL [NSString stringWithFormat:@"%@/RHJF1001", API_BASE_URL]
+         
+            2 > 上面那样拼接不行的话, 用下面的这个拼接
+                    #define API_BASE_HOST @"http://118.190.132.71:8081"
+                    #define sendCodeURL API_BASE_HOST@"/RHJF1001" // 首页
+            // 把上面的都写在全局宏定义中就可以
 
          */
 // 38 > Coding和码云创建仓库提交代码步骤
