@@ -57,6 +57,7 @@
  42 > 给一个view特定的角设置圆角
  43 > 获取一个类的所有的成员名字和属性名称, 然后通过kvo修改
  44 > 添加启动页静态图
+ 45 > 关于ScrollView以及tableView下移20像素(状态栏)高度问题
  
  
  
@@ -693,6 +694,16 @@
          3 > 点击target -> General -> App Icons and Launch Images -> 点击第二个 Launch Images Sourc -> 弹窗选择Assets -> Migrate -> 把第三个的Launch Screen File里面内容删除保存 ->选择项目中的LaunchScreen.storyboard -> 选中出现的ViewController -> 右侧面板选择左侧第一个 -> 找到"Use as Launch Screen" -> 把前面的对勾去掉
          4 > 这个时候运行项目, 看看静态启动图设置了没, 如果没有的话, 把app删除, 重新安装再试试
          
+         */
+// 45 > 关于ScrollView以及tableView下移20像素(状态栏)高度问题
+        /*
+         1 > 在创建的时候加上下面的代码就行了
+             if (@available(iOS 11.0, *)) {
+                self.HomeMainScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+             } else {
+                self.automaticallyAdjustsScrollViewInsets = NO;
+             }
+         2 > 上面的是设置的scrollView禁止下移20, 原理给tableView下移是一样的, 因为tableView也是继承的ScrollView
          */
 
 /******************************************开发问题解决方法***********************************************/
