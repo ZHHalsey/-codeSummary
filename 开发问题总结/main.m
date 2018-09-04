@@ -58,6 +58,7 @@
  43 > 获取一个类的所有的成员名字和属性名称, 然后通过kvo修改
  44 > 添加启动页静态图
  45 > 关于ScrollView以及tableView下移20像素(状态栏)高度问题
+ 46 > 修改控制器的View大小(这里是修改的self.view的高度)
  
  
  
@@ -704,6 +705,19 @@
                 self.automaticallyAdjustsScrollViewInsets = NO;
              }
          2 > 上面的是设置的scrollView禁止下移20, 原理给tableView下移是一样的, 因为tableView也是继承的ScrollView
+         */
+// 46 > 修改控制器的View大小(这里是修改的self.view的高度)
+        /*
+            不能直接这么修改 : self.view.bounds.size.height = 200.f; // 这样直接修改会报错
+            应该用下面的方法来修改
+                 // 1. 用一个临时变量保存返回值。
+                 CGRect temp = self.view.frame;
+         
+                 // 2. 给这个变量赋值。因为变量都是L-Value，可以被赋值
+                 temp.size.height = 100f;
+         
+                 // 3. 修改frame的值
+                 self.view.frame = temp;
          */
 
 /******************************************开发问题解决方法***********************************************/
