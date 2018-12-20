@@ -59,8 +59,9 @@
  44 > 添加启动页静态图
  45 > 关于ScrollView以及tableView下移20像素(状态栏)高度问题
  46 > 修改控制器的View大小(这里是修改的self.view的高度)
- 47 > 给自己写的库, 类 支持cocoapods
- 
+ 47 > 给项目支持pod导入库(前提是已经安装好cocoaPods)
+ 48 > 给自己写的库, 类 支持cocoapods
+
  
  
 ********************************************开发问题目录**************************************************
@@ -720,10 +721,20 @@
                  // 3. 修改frame的值
                  self.view.frame = temp;
          */
-// 47 > 给自己写的库, 类 支持cocoapods
+
+// 47 > 给项目支持pod导入库(前提是已经安装好cocoaPods)
         /*
-            
-         
+            1 > cd到项目目录下
+            2 > pod init
+            3 > 在项目目录下找到Podfile文件
+            4 > # Pods for gitStudy(前面有#号) 下面导入自己的库(例pod "AFNetworking")
+            5 > 终端执行 pod install, 然后在项目目录下重新打开xx.xcworkspace文件就可以了
+         */
+
+// 48 > 给自己写的库, 类 支持cocoapods
+        /*
+ 
+ 
          */
 
 
